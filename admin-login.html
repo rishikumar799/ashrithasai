@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Ashritha Sai</title>
+  <link rel="stylesheet" href="css/popup.css">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1a3a6f 0%, #0f2a4f 100%);
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>🔐 Admin Login</h2>
+    <input type="text" id="adminEmail" placeholder="Email" autocomplete="off">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p style="text-align:center;margin-top:15px;font-size:12px;color:#666">Default: admin@ashrithasai.in / admin123</p>
+  </div>
+
+  <script>
+    // CHANGE THESE CREDENTIALS FOR PRODUCTION!
+    const ADMIN_EMAIL = 'admin@ashrithasai.in';
+    const ADMIN_PASSWORD = 'admin123';
+
+    function login() {
+      const email = document.getElementById('adminEmail').value;
+      const password = document.getElementById('adminPassword').value;
+
+      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+        localStorage.setItem('admin_logged_in', 'true');
+        window.location.href = '/admin-panel.html';
+      } else {
+        alert('Invalid credentials!');
+      }
+    }
+
+    // Check if already logged in
+    if (localStorage.getItem('admin_logged_in') === 'true') {
+      window.location.href = '/admin-panel.html';
+    }
+
+    // Allow Enter key to submit
+    document.getElementById('adminPassword').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+</body>
+
+</html>
